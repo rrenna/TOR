@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Items</key>
+		<array>
+			<dict>
+				<key>Link</key>
+				<string>http://twitter.com/rrenna</string>
+				<key>Name</key>
+				<string>Ryan Renna</string>
+				<key>Role</key>
+				<string>Creator</string>
+			</dict>
+		</array>
+		<key>Type</key>
+		<string>List</string>
+	</dict>
+	<dict>
+		<key>Items</key>
+		<array>
+			<dict>
+				<key>Link</key>
+				<string>http://www.offblastsoftworks.com/</string>
+				<key>Name</key>
+				<string>Offblast Softworks</string>
+			</dict>
+			<dict>
+				<key>Email</key>
+				<string>offblastsoftworks@gmail.com</string>
+				<key>EmailName</key>
+				<string>Offblast Softworks Support</string>
+				<key>Name</key>
+				<string>Contact Us</string>
+			</dict>
+		</array>
+		<key>Title</key>
+		<string>Links</string>
+		<key>Type</key>
+		<string>List</string>
+	</dict>
+	<dict>
+		<key>Items</key>
+		<array>
+			<dict>
+				<key>Link</key>
+				<string>http://itunes.apple.com/us/app/g.w.2-codex/id510839835?ls=1&amp;mt=8</string>
+				<key>Name</key>
+				<string>Guild Wars 2 Codex</string>
+			</dict>
+		</array>
+		<key>Title</key>
+		<string>Other Products</string>
+		<key>Type</key>
+		<string>List</string>
+	</dict>
+	<dict>
+		<key>Alignment</key>
+		<string>Left</string>
+		<key>Text</key>
+		<string>T.O.R. Codex wouldn&apos;t be possible without these 3rd party libraries : MDAboutController, TSMiniWebBrowser, iRate, SVProgressHUD, InstapaperKit, EGORefreshTabHeaderView, BHTabBar and MWFeedParser.</string>
+		<key>Type</key>
+		<string>Text</string>
+	</dict>
+	<dict>
+		<key>Image</key>
+		<string>logo.png</string>
+		<key>Type</key>
+		<string>Image</string>
+	</dict>
+	<dict>
+		<key>Size</key>
+		<string>11</string>
+		<key>Text</key>
+		<string>© 2012 Offblast Softworks</string>
+		<key>Type</key>
+		<string>Text</string>
+	</dict>
+</array>
+</plist>

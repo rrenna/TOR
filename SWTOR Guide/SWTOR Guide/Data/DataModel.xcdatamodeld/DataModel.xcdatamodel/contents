@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C73" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SGCharacter" parentEntity="SGCreature">
+        <attribute name="dislikes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="likes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="personality" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="romanceable" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characterClassesCompanion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="companions" inverseEntity="SGCharacterClass"/>
+        <relationship name="companionForShips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGShip" inverseName="companion" inverseEntity="SGShip" syncable="YES"/>
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGLocation" inverseName="characters" inverseEntity="SGLocation"/>
+        <relationship name="race" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGRace" inverseName="characters" inverseEntity="SGRace"/>
+    </entity>
+    <entity name="SGCharacterClass" parentEntity="SGEntity">
+        <attribute name="Allegiance" optional="YES" attributeType="String"/>
+        <attribute name="Headline" optional="YES" attributeType="String"/>
+        <attribute name="isAdvancedClass" optional="YES" attributeType="Boolean" defaultValueString="NO"/>
+        <relationship name="advancedClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="parentClass" inverseEntity="SGCharacterClass"/>
+        <relationship name="companions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacter" inverseName="characterClassesCompanion" inverseEntity="SGCharacter"/>
+        <relationship name="craftingSkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCraftingSkill" inverseName="characterClasses" inverseEntity="SGCraftingSkill"/>
+        <relationship name="parentClass" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="advancedClasses" inverseEntity="SGCharacterClass"/>
+        <relationship name="races" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGRace" inverseName="classes" inverseEntity="SGRace"/>
+        <relationship name="ship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGShip" inverseName="characterClasses" inverseEntity="SGShip"/>
+        <relationship name="skillTrees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGSkillTree" inverseName="characterClass" inverseEntity="SGSkillTree" syncable="YES"/>
+        <relationship name="startingPlanet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGPlanet" inverseName="startingClasses" inverseEntity="SGPlanet"/>
+    </entity>
+    <entity name="SGCharacterSkill" parentEntity="SGSkill" syncable="YES">
+        <attribute name="tier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="SGCraftingSkill" parentEntity="SGSkill">
+        <attribute name="Headline" optional="YES" attributeType="String"/>
+        <attribute name="Result" optional="YES" attributeType="String"/>
+        <relationship name="characterClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="craftingSkills" inverseEntity="SGCharacterClass"/>
+    </entity>
+    <entity name="SGCreature" parentEntity="SGEntity"/>
+    <entity name="SGDatacron" parentEntity="SGEntity" syncable="YES">
+        <attribute name="Allegiance" optional="YES" attributeType="String"/>
+        <attribute name="colour" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unlocks" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGLocation" inverseName="datacrons" inverseEntity="SGLocation" syncable="YES"/>
+    </entity>
+    <entity name="SGEntity" isAbstract="YES">
+        <attribute name="Description" optional="YES" attributeType="String"/>
+        <attribute name="Name" optional="YES" attributeType="String"/>
+        <attribute name="PreviewBackgroundFilename" optional="YES" attributeType="String"/>
+        <attribute name="Searchable" attributeType="Boolean" defaultValueString="YES"/>
+    </entity>
+    <entity name="SGFlashpoint" parentEntity="SGLocation">
+        <attribute name="Allegiance" optional="YES" attributeType="String"/>
+        <attribute name="GameLevel" optional="YES" attributeType="String"/>
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGLocation" inverseName="flashpoints" inverseEntity="SGLocation"/>
+    </entity>
+    <entity name="SGLocation" parentEntity="SGEntity">
+        <attribute name="Terrain" optional="YES" attributeType="String"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacter" inverseName="location" inverseEntity="SGCharacter"/>
+        <relationship name="datacrons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGDatacron" inverseName="location" inverseEntity="SGDatacron" syncable="YES"/>
+        <relationship name="flashpoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGFlashpoint" inverseName="location" inverseEntity="SGFlashpoint" syncable="YES"/>
+        <relationship name="operations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGOperation" inverseName="location" inverseEntity="SGOperation" syncable="YES"/>
+        <relationship name="warzones" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGWarzone" inverseName="location" inverseEntity="SGWarzone" syncable="YES"/>
+    </entity>
+    <entity name="SGOperation" parentEntity="SGEntity" syncable="YES">
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGLocation" inverseName="operations" inverseEntity="SGLocation" syncable="YES"/>
+    </entity>
+    <entity name="SGPlanet" representedClassName="SGPlanet" parentEntity="SGLocation">
+        <attribute name="Allegiance" optional="YES" attributeType="String"/>
+        <attribute name="Region" optional="YES" attributeType="String"/>
+        <attribute name="Status" optional="YES" attributeType="String"/>
+        <relationship name="startingClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="startingPlanet" inverseEntity="SGCharacterClass"/>
+    </entity>
+    <entity name="SGRace" parentEntity="SGEntity">
+        <attribute name="NPCOnly" optional="YES" attributeType="Boolean" defaultValueString="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacter" inverseName="race" inverseEntity="SGCharacter"/>
+        <relationship name="classes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="races" inverseEntity="SGCharacterClass"/>
+    </entity>
+    <entity name="SGShip" parentEntity="SGEntity">
+        <attribute name="Allegiance" optional="YES" attributeType="String"/>
+        <attribute name="manufacturer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characterClasses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="ship" inverseEntity="SGCharacterClass"/>
+        <relationship name="companion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGCharacter" inverseName="companionForShips" inverseEntity="SGCharacter" syncable="YES"/>
+    </entity>
+    <entity name="SGSkill" parentEntity="SGEntity">
+        <attribute name="Type" optional="YES" attributeType="String"/>
+        <relationship name="reliedOnBy" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SGSkill" inverseName="reliesOn" inverseEntity="SGSkill"/>
+        <relationship name="reliesOn" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SGSkill" inverseName="reliedOnBy" inverseEntity="SGSkill"/>
+        <relationship name="skillTree" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGSkillTree" inverseName="skills" inverseEntity="SGSkillTree" syncable="YES"/>
+    </entity>
+    <entity name="SGSkillTree" parentEntity="SGEntity" syncable="YES">
+        <relationship name="characterClass" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGCharacterClass" inverseName="skillTrees" inverseEntity="SGCharacterClass" syncable="YES"/>
+        <relationship name="skills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SGSkill" inverseName="skillTree" inverseEntity="SGSkill" syncable="YES"/>
+    </entity>
+    <entity name="SGWarzone" parentEntity="SGLocation">
+        <attribute name="isFactionSeperated" optional="YES" attributeType="Boolean"/>
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SGLocation" inverseName="warzones" inverseEntity="SGLocation" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SGCharacter" positionX="-4041" positionY="-1143" width="128" height="195"/>
+        <element name="SGCharacterClass" positionX="-4221" positionY="-828" width="128" height="210"/>
+        <element name="SGCharacterSkill" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="SGCraftingSkill" positionX="-4392" positionY="-990" width="128" height="120"/>
+        <element name="SGCreature" positionX="-4223" positionY="-963" width="128" height="45"/>
+        <element name="SGDatacron" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="SGEntity" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="SGFlashpoint" positionX="-4520" positionY="-675" width="128" height="90"/>
+        <element name="SGLocation" positionX="-4619" positionY="-909" width="128" height="135"/>
+        <element name="SGOperation" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="SGPlanet" positionX="-4437" positionY="-963" width="128" height="120"/>
+        <element name="SGRace" positionX="-4437" positionY="-828" width="128" height="90"/>
+        <element name="SGShip" positionX="-4025" positionY="-837" width="128" height="120"/>
+        <element name="SGSkill" positionX="-4221" positionY="-702" width="128" height="75"/>
+        <element name="SGSkillTree" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="SGWarzone" positionX="-4691" positionY="-675" width="128" height="75"/>
+    </elements>
+</model>
